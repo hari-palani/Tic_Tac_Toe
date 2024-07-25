@@ -11,7 +11,7 @@ Control control = Control();
 
 // ignore: must_be_immutable
 class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+  MyApp({super.key});
 
   Control control = Control();
 
@@ -39,7 +39,7 @@ String playercharacter = "X";
 int filled = 0;
 
 class MainApp extends StatefulWidget {
-  const MainApp({Key? key}) : super(key: key);
+  const MainApp({super.key});
 
   @override
   State<MainApp> createState() => _MainAppState();
@@ -109,16 +109,16 @@ class _MainAppState extends State<MainApp> {
       },
       child: Container(
         width: MediaQuery.of(context).size.width * 0.2,
-        height: MediaQuery.of(context).size.width * 0.2,
+        height: MediaQuery.of(context).size.height * 0.13,
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.black, width: 2),
+        ),
         child: Center(
           child: Text(
             control.matrix[i][j],
             style:
                 TextStyle(fontSize: MediaQuery.of(context).size.width * 0.15),
           ),
-        ),
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.black, width: 2),
         ),
       ),
     );
@@ -129,49 +129,42 @@ class _MainAppState extends State<MainApp> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-          child: Text(
-            "$playercharacter's turn",
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: MediaQuery.of(context).size.width * 0.2),
-          ),
+        Text(
+          "$playercharacter's turn",
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: MediaQuery.of(context).size.width * 0.2),
         ),
-        Padding(
-          padding: MediaQuery.of(context).viewPadding * 0.75,
-          child: Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    board(0, 0),
-                    board(0, 1),
-                    board(0, 2),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    board(1, 0),
-                    board(1, 1),
-                    board(1, 2),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    board(2, 0),
-                    board(2, 1),
-                    board(2, 2),
-                  ],
-                ),
-                const SizedBox(
-                  height: 100,
-                ),
-              ],
-            ),
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  board(0, 0),
+                  board(0, 1),
+                  board(0, 2),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  board(1, 0),
+                  board(1, 1),
+                  board(1, 2),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  board(2, 0),
+                  board(2, 1),
+                  board(2, 2),
+                ],
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.3),
+            ],
           ),
         ),
       ],
